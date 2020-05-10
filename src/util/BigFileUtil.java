@@ -47,16 +47,16 @@ public class BigFileUtil {
         FileChannel inChannel = FileChannel.open(Paths.get(file), StandardOpenOption.READ);
 
 
-        long pos = 0;                                   // 读通道定位指针，贯穿整个文件操作
-        long size = inChannel.size();                   // 指定的处理文件的大小
-        long remainder = size % splitSize;              // 切割剩余字节数
-        long splitNum = size / splitSize;               // 切割文件数，不包括剩余
-        String fileName = new File(file).getName();     // 文件名[分割新文件时使用]
-        int suffix = (int) splitNum;                    // 文件名称的索引数标识[分割新文件时使用]
-        MappedByteBuffer inMappedBuf;                   // 读通道缓冲区
-        MappedByteBuffer outMappedBuf;                  // 写通道缓冲区
-        FileChannel outChannel;                         // 文件输出流通道
-        byte[] bytes = null;                            // 内存映射缓冲数组
+        long pos                        = 0;                        // 读通道定位指针，贯穿整个文件操作
+        long size                       = inChannel.size();         // 指定的处理文件的大小
+        long remainder                  = size % splitSize;         // 切割剩余字节数
+        long splitNum                   = size / splitSize;         // 切割文件数，不包括剩余
+        String fileName                 = new File(file).getName(); // 文件名[分割新文件时使用]
+        int suffix                      = (int) splitNum;           // 文件名称的索引数标识[分割新文件时使用]
+        MappedByteBuffer inMappedBuf    = null;                     // 读通道缓冲区
+        MappedByteBuffer outMappedBuf   = null;                     // 写通道缓冲区
+        FileChannel outChannel          = null;                     // 文件输出流通道
+        byte[] bytes                    = null;                     // 内存映射缓冲数组
 
 
         // 开始循环切割指定大小的文件
