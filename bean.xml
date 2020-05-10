@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_171" class="java.beans.XMLDecoder">
+ <object class="xml.Person">
+  <void property="age">
+   <int>18</int>
+  </void>
+  <void property="name">
+   <string>张三</string>
+  </void>
+  <void property="sex">
+   <string>女</string>
+  </void>
+ </object>
+</java>

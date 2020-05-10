@@ -1,0 +1,1 @@
+native2ascii -encoding UTF-8 chinese_temp.properties chinese.properties

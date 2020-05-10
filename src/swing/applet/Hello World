@@ -1,0 +1,8 @@
+<Html>
+<Head>
+<Title>Hello World</Title>
+</Head>
+<Body>
+<Applet code="HelloWorldApplet.class" WIDTH=150 HEIGHT=50></Applet>
+</Body>
+</Html>

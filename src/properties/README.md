@@ -1,0 +1,1 @@
+#安装好bat插件，右键文件执行即可生成ascii格式的properties文件
