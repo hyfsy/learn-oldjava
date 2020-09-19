@@ -851,6 +851,26 @@ public class PdfUtil {
     }
 
     /**
+     * 传入一个存放标题的list，获取标题的所有父/爷等标题 （增强切割细节，使合并用的切割文件分的更细，合并效果更好，书签显示也更人性化）
+     *
+     * @param titleList 存放标题的空列表
+     * @param title     单个标题
+     */
+    private static void addParentTitle(List<String> titleList, String title) {
+        String parent = title;
+        // 获取父辈标题
+        parent = title.substring(0, title.lastIndexOf("_") != -1 ? title.lastIndexOf("_") : 0);
+        if (!isEmpty(parent)) {
+            addParentTitle(titleList, parent);
+        }
+
+        // 判断当前标题是否已经存在
+        if (!titleList.contains(title)) {
+            titleList.add(title);
+        }
+    }
+
+    /**
      * 递归添加书签
      *
      * @param writer    文档写入流
@@ -893,26 +913,6 @@ public class PdfUtil {
             if (kids != null) {
                 addBookmark(writer, pdfOutline, kids, totalPage);
             }
-        }
-    }
-
-    /**
-     * 传入一个存放标题的list，获取标题的所有父/爷等标题 （增强切割细节，使合并用的切割文件分的更细，合并效果更好，书签显示也更人性化）
-     *
-     * @param titleList 存放标题的空列表
-     * @param title     单个标题
-     */
-    private static void addParentTitle(List<String> titleList, String title) {
-        String parent = title;
-        // 获取父辈标题
-        parent = title.substring(0, title.lastIndexOf("_") != -1 ? title.lastIndexOf("_") : 0);
-        if (!isEmpty(parent)) {
-            addParentTitle(titleList, parent);
-        }
-
-        // 判断当前标题是否已经存在
-        if (!titleList.contains(title)) {
-            titleList.add(title);
         }
     }
 
