@@ -236,7 +236,7 @@ public class ImageUtil
                 final int r = rgb >> 16 & 0xff;
                 final int g = rgb >> 8 & 0xff;
                 final int b = rgb & 0xff;
-                // int gray = (int) (0.3 * r + 0.59 * g + 0.11 * b);//灰度
+                // int gray = (int) (0.3 * r + 0.59 * g + 0.11 * b); // 加权法灰度化
                 int gray = 0 * r + 0 * g + 1 * b;
                 int pixel = colorToRGB(255, gray, gray, gray);
                 gbi.setRGB(i, j, pixel);
