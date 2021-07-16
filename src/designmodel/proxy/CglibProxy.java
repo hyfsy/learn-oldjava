@@ -22,6 +22,18 @@ public class CglibProxy
         Car t = (Car)proxy.getProxy(Train.class);
         t.move();
         System.out.println(System.getProperty("user.dir"));
+
+        // or
+
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(Car.class);
+        enhancer.setUseCache(false);
+        enhancer.setCallback(new MethodInterceptor() {
+            public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+                return proxy.invokeSuper(obj, args);
+            }
+        });
+        enhancer.create();
     }
 
 }
