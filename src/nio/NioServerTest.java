@@ -28,7 +28,7 @@ public class NioServerTest {
         // 4. 获取选择器
         Selector selector = Selector.open();
         // 5. 将通道注册到选择器上，并且指定监听接收事件
-        SelectionKey key = ssChannel.register(selector, SelectionKey.OP_ACCEPT);
+        ssChannel.register(selector, SelectionKey.OP_ACCEPT);
         // 6. 轮询式的获取选择器上已经准备就绪的事件
         while (selector.select(0) > 0) {
             // 7. 获取当前选择器中所有注册的选择键（已就绪的监听事件）
@@ -59,9 +59,9 @@ public class NioServerTest {
                     // 15. 客户端添加写事件
                     sChannel.register(selector, SelectionKey.OP_WRITE, buf);
                 }
-                else if (key.isWritable()) {
+                else if (sk.isWritable()) {
                     // 16. 获取客户端连接
-                    SocketChannel sChannel = (SocketChannel) key.channel();
+                    SocketChannel sChannel = (SocketChannel) sk.channel();
                     String content = "hello world";
                     byte[] bytes = ("HTTP/1.1 200 OK" +
                             "\r\n" +
