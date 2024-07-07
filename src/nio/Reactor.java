@@ -92,8 +92,8 @@ public class Reactor implements Runnable {
 
         Handler(Selector sel, SocketChannel c) throws IOException {
             socket = c;
-            c.configureBlocking(false); // Optionally try first read now
-            sk = socket.register(sel, 0);
+            c.configureBlocking(false);
+            sk = socket.register(sel, 0); // Optionally try first read now
             sk.attach(this);
             sk.interestOps(SelectionKey.OP_READ);
             sel.wakeup();
